@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Перчатъ</title>
+    <link type="text/css" rel="stylesheet" href="css/chat.css">
+
+    <!--<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>-->
+
+    <!--&lt;!&ndash; Latest compiled and minified CSS &ndash;&gt;-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">-->
+
+    <!--&lt;!&ndash; Optional theme &ndash;&gt;-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">-->
+
+    <!--&lt;!&ndash; Latest compiled and minified JavaScript &ndash;&gt;-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+
+
+</head>
+<body>
+<div class="fixed-overlay__modal" id="mainModalWindow">
+    <div class="modal">
+        <div class="modal_container">
+            <input class="txtLoginClass" id="txtLogin" type="text">
+            <input class="btnLoginClass" type="button" value="In" id="btnLogin">
+        </div>
+    </div>
+</div>
+
+<div class="mainChatForm" id="mainChatFormId">
+    <!-- здесь будут появляться входящие сообщения -->
+    <div class="chatDialogPanel" id="subscribe"></div>
+
+    <div class="chatSendPanel">
+        <form name="publish">
+            <input class="chatSendPanel txtBoard" type="text" name="message" id="message">
+            <!--<input type="submit" value="Отправить" id="btn">-->
+              <span>
+                <input class="chatSendPanel sendButton" type="button" id="btn">
+                  <!--value="Отправить"-->
+              </span>
+        </form>
+    </div>
+
+    <script
+            type="text/javascript" src="js/chat.js">
+    </script>
+</div>
+</body>
+</html>

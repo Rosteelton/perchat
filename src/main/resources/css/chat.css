@@ -1,0 +1,232 @@
+body {
+  margin: 0;
+}
+
+@media screen and (min-width: 1000px) {
+  .mainChatForm {
+    z-index: 800;
+    display: block;
+    height: 600px;
+    /*padding: 0 5% 0 5%;*/
+    width: 400px;
+    margin: auto;
+    border: solid 2px gray;
+    border-radius: 3px;
+    background-image: url("../images/arches3.png");
+  }
+
+  .chatDialogPanel {
+    /*display: inline-table;*/
+    /*position: absolute;*/
+    height: 549px;
+    width: auto;
+    /*border: solid 2px gray;*/
+    /*border-radius: 3px;*/
+    overflow-y:auto;
+  }
+
+  .chatSendPanel {
+    display: block;
+    height: 49px;
+  } .txtBoard {
+         /*height: 50px;*/
+   }
+   .sendButton {
+     /*height: 50px;*/
+     width: 50px ;
+   }
+
+  .newMessage {
+    max-width: 340px;
+  }
+
+  .modal_container {
+    margin: 50px;
+    padding: 20px;
+    min-width: 200px;
+    text-align: left;
+    white-space: normal;
+    background-color: #fff;
+    color: #000;
+
+    border: 2px solid black;
+    z-index: 990;
+  }
+
+  .txtLoginClass {
+    display: inline-block;
+    /*float: left;*/
+    border: 1px solid black;
+    z-index: 999;
+  }
+
+  .btnLoginClass {
+    display: inline-block;
+    z-index: 999;
+    /*float: right;*/
+  }
+}
+
+@media screen and (max-width: 990px)  {
+  .mainChatForm {
+    display: block;
+    z-index: 800;
+    height: 99vh;
+    margin: auto;
+    border: solid 2px gray;
+    border-radius: 3px;
+    background-image: url("../images/arches3.png");
+  }
+
+  .chatDialogPanel {
+    height: 92vh;
+    /*position: absolute;*/
+    width: auto;
+    /*border: solid 2px gray;*/
+    /*border-radius: 3px;*/
+    overflow-y:auto;
+  }
+
+  .chatSendPanel {
+    display: block;
+    height: 8vh;
+  } .txtBoard {
+        height: 7vh;
+      }
+  .sendButton {
+    height: 7vh;
+    width: 7vh ;
+  }
+
+  .newMessage {
+    max-width: 70vh;
+  }
+
+  .modal_container {
+    margin: 50px;
+    padding: 20px;
+    min-width: 40vw;
+    height: 3vh;
+    text-align: left;
+    white-space: normal;
+    background-color: #fff;
+    color: #000;
+
+    border: 2px solid black;
+    z-index: 990;
+  }
+
+  .txtLoginClass {
+    display: inline-block;
+    /*float: left;*/
+    width: 70%;
+    height: 2vh;
+    border: 1px solid black;
+    z-index: 999;
+
+    font-size: 1.5vh;
+    font-family: 'Arial', Times, serif;
+    font-style: normal;
+  }
+
+  .btnLoginClass {
+    display: inline-block;
+    z-index: 999;
+    height: 2vh;
+    width: 4vh;
+    float: right;
+  }
+}
+
+.chatSendPanel {
+  background: white;
+} .txtBoard {
+    display: inline-flex;
+    border: none;
+    width: 80%;
+    /*height: 7vh !important;*/
+    float: left;
+    outline: none;
+
+    font-size: 4vh;
+    font-family: 'Arial', Times, serif;
+    font-style: normal;
+  }
+  .sendButton {
+    /*border-radius: 35px;*/
+    /*width: 15%;*/
+    float: right;
+    outline: none;
+
+    display: inline-block;
+    /*width: 7vh;*/
+    /*height: 7vh;*/
+    vertical-align: middle;
+    text-decoration: none;
+    /*border: .5em solid rgba(0,0,0,0);*/
+    border-radius: 100%;
+    /*background: rgb(245,245,245) linear-gradient(rgb(245,245,245), rgb(188,192,193)) 50% 50% / calc(1.5em + .5em*2) calc(1.5em + .5em*2);*/
+    background: rgb(245,245,245) linear-gradient(rgb(245,245,245), rgb(188,192,193));
+    box-shadow:
+      inset 0 -3px 10px rgba(255,255,255,1),
+      inset 0 3px 10px rgba(0,0,0,.4),
+      0 2px 4px rgba(0,0,0,.9);
+  }
+
+.messageBody {
+  width: 100%;
+  display: inline-block;
+}
+
+.newMessage {
+  /*position: absolute;*/
+  /*display: inline;*/
+  min-height: 5vh;
+  float: right;
+  border: solid 1px green;
+  border-radius: 3px;
+  background-color: aquamarine;
+  word-break: break-all;
+  opacity: 0.9;
+  /*width: auto;*/
+  margin-bottom: 5px;
+  padding: 2px;
+  box-shadow: 0 0 7px #000;
+
+  font-size: 4vh;
+  font-family: 'Arial', Times, serif;
+  font-style: normal;
+}
+
+
+
+
+
+.fixed-overlay__modal {
+  position: fixed;
+  text-align: center;
+  white-space: nowrap;
+  background: gray;
+  width: 100%;
+  opacity: 0.8;
+  z-index: 900;
+}
+
+.fixed-overlay__modal::after {
+  display: inline-block;
+  vertical-align: middle;
+  /*width: 100%;*/
+  height: 100vh;
+  content: '';
+}
+
+.modal {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/*-webkit-border-radius: 3px;*/
+/*-moz-border-radius: 3px;*/
+/*-ms-border-radius: 3px;*/
+/*-o-border-radius: 3px;*/
+
