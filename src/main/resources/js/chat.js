@@ -1,20 +1,37 @@
-var socket=null;
+//start point
+var nameField = document.getElementById('txtLogin');
+nameField.value = "Антон";
+document.getElementById('btnLogin').onclick = loginIn(nameField.value);
 
-function loginIn() {
-    var name = document.getElementById('txtLogin').value;
+function loginIn(name) {
     if (name.length > 0) {
         document.getElementById('mainModalWindow').style.display = 'none';
 
-        // создать подключение
-        //--------------------------------------
-
+        // create connection
         var wsURL = "ws://localhost:9000/chat?name=" + name;
-        alert(wsURL);
-            socket = new WebSocket(wsURL);
+        var socket = new WebSocket(wsURL);
 
-        // ------- коллбэки --------
-        socket.onopen = function () {
-            alert("Соединение установлено.");
+        //socket logic
+        socket.onopen = function (event) {
+            showMessage("Chat connection was successful!");
+
+            var sendButton = document.getElementById('btn');
+            var messageField = document.getElementById('message');
+
+            sendButton.onclick = function () {
+                socket.send(messageField.value);
+                messageField = ""
+            };
+            return event;
+        };
+
+
+        socket.onmessage = function (event) {
+            showMessage(event.data);
+        };
+
+        socket.onerror = function (error) {
+            alert("Ошибка " + error.message);
         };
 
         socket.onclose = function (event) {
@@ -26,31 +43,10 @@ function loginIn() {
             alert('Код: ' + event.code + ' причина: ' + event.reason);
         };
 
-        
-        
-        
-        socket.onmessage = function (event) {
-            showMessage(event.data);
-
-            //alert("Получены данные " + event.data);
-        };
-
-        socket.onerror = function (error) {
-            alert("Ошибка " + error.message);
-        };
-        // -----------------------
-        //--------------------------------------
-        
-        
-        
-        
     } else {
-        alert('Вы не ввели логин!');
+        alert('Please write your name!');
     }
 }
-
-//start point
-document.getElementById('btnLogin').onclick = loginIn;
 
 // отправить сообщение из формы publish
 //--------------------------------------
@@ -61,24 +57,15 @@ document.forms.publish.onsubmit = function () {
     return false;
 };
 
-// обработчик входящих сообщений
-socket.onmessage = function (event) {
-    var incomingMessage = event.data;
-    showMessage(incomingMessage);
-};
-
 // показать сообщение в div#subscribe
 function showMessage(message) {
     var messageElem = document.createElement('div');
     var messageElemBody = document.createElement('div');
-
-    // message = document.getElementById('message').value;
     messageElem.className = 'newMessage';
     messageElemBody.className = 'messageBody';
-
     messageElem.appendChild(document.createTextNode(message));
     messageElemBody.appendChild(messageElem);
     document.getElementById('subscribe').appendChild(messageElemBody);
 }
 
-document.getElementById('btn').onclick = showMessage;
+
