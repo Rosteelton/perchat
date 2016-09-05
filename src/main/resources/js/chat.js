@@ -1,71 +1,50 @@
-//start point
-var nameField = document.getElementById('txtLogin');
-nameField.value = "Антон";
-document.getElementById('btnLogin').onclick = loginIn(nameField.value);
+main();
+
+function main() {
+    var name = document.getElementById('textFieldForName');
+    document.getElementById('loginButton').onclick = loginIn(name.value);
+}
 
 function loginIn(name) {
     if (name.length > 0) {
-        document.getElementById('mainModalWindow').style.display = 'none';
+        document.getElementById('loginWindow').style.display = 'none';
 
         // create connection
         var wsURL = "ws://localhost:9000/chat?name=" + name;
         var socket = new WebSocket(wsURL);
 
-        //socket logic
-        socket.onopen = function (event) {
+        socket.onopen = function () {
             showMessage("Chat connection was successful!");
 
-            var sendButton = document.getElementById('btn');
-            var messageField = document.getElementById('message');
-
-            sendButton.onclick = function () {
-                socket.send(messageField.value);
-                messageField = ""
-            };
-            return event;
+            var messageField = document.getElementById('textFieldForMessage');
+            var sendMessageButton = document.getElementById('sendMessageButton');
+            sendMessageButton.onclick = socket.send(messageField.value);
+            return false;
         };
-
 
         socket.onmessage = function (event) {
             showMessage(event.data);
-        };
-
-        socket.onerror = function (error) {
-            alert("Ошибка " + error.message);
+            return false;
         };
 
         socket.onclose = function (event) {
-            if (event.wasClean) {
-                alert('Соединение закрыто чисто');
-            } else {
-                alert('Обрыв соединения'); // например, "убит" процесс сервера
-            }
-            alert('Код: ' + event.code + ' причина: ' + event.reason);
+            showMessage(event.data + "ушел");
+            return false;
         };
-
     } else {
-        alert('Please write your name!');
+        alert('Пожалуйста, представьтесь!');
     }
 }
-
-// отправить сообщение из формы publish
-//--------------------------------------
-document.forms.publish.onsubmit = function () {
-    var outgoingMessage = this.message.value;
-
-    socket.send(outgoingMessage);
-    return false;
-};
 
 // показать сообщение в div#subscribe
 function showMessage(message) {
     var messageElem = document.createElement('div');
     var messageElemBody = document.createElement('div');
+
     messageElem.className = 'newMessage';
     messageElemBody.className = 'messageBody';
+
     messageElem.appendChild(document.createTextNode(message));
     messageElemBody.appendChild(messageElem);
     document.getElementById('subscribe').appendChild(messageElemBody);
 }
-
-

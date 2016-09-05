@@ -19,11 +19,11 @@
 
 </head>
 <body>
-<div class="fixed-overlay__modal" id="mainModalWindow">
+<div class="fixed-overlay__modal" id="loginWindow">
     <div class="modal">
         <div class="modal_container">
-            <input class="txtLoginClass" id="txtLogin" type="text">
-            <input class="btnLoginClass" type="button" value="In" id="btnLogin">
+          Имя: <input class="txtLoginClass" id="textFieldForName" type="text">
+            <input class="btnLoginClass" type="button" value="Log in!" id="loginButton">
         </div>
     </div>
 </div>
@@ -34,10 +34,10 @@
 
     <div class="chatSendPanel">
         <form name="publish">
-            <input class="chatSendPanel txtBoard" type="text" name="message" id="message">
+            <input class="chatSendPanel txtBoard" type="text" name="message" id="textFieldForMessage">
             <!--<input type="submit" value="Отправить" id="btn">-->
               <span>
-                <input class="chatSendPanel sendButton" type="button" id="btn">
+                <input class="chatSendPanel sendButton" type="button" id="sendMessageButton">
                   <!--value="Отправить"-->
               </span>
         </form>
