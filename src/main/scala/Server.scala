@@ -14,6 +14,10 @@ object Server extends App {
       get {
         getFromResourceDirectory("css")
       }
+    } ~ pathPrefix("images") {
+      get {
+        getFromResourceDirectory("images")
+      }
     } ~
       pathPrefix("js") {
         get {

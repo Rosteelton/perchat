@@ -1,29 +1,44 @@
+var host = "localhost";
+var port = "9000";
+
 main();
 
-function main() {
-    var name = document.getElementById('textFieldForName');
-    document.getElementById('loginButton').onclick = loginIn(name.value);
+function parseMessageForPrint(msg) {
+    var chatMessage = JSON.parse(msg);
+    if (chatMessage.sender == "SYSTEM")
+        return chatMessage.message;
+    else
+        return chatMessage.sender + ":" + chatMessage.message;
 }
 
-function loginIn(name) {
+function main() {
+    var nameField = document.getElementById('textFieldForName');
+    document.getElementById('loginButton').onclick = loginIn.bind(null, nameField);
+}
+
+function loginIn(element) {
+    var name = element.value;
     if (name.length > 0) {
         document.getElementById('loginWindow').style.display = 'none';
-
         // create connection
-        var wsURL = "ws://localhost:9000/chat?name=" + name;
+        var wsURL = "ws://" + host + ":" + port + "/chat?name=" + name;
         var socket = new WebSocket(wsURL);
 
         socket.onopen = function () {
             showMessage("Chat connection was successful!");
-
             var messageField = document.getElementById('textFieldForMessage');
             var sendMessageButton = document.getElementById('sendMessageButton');
-            sendMessageButton.onclick = socket.send(messageField.value);
+
+            sendMessageButton.onclick = function () {
+                var message = messageField.value;
+                messageField.value = "";
+                return socket.send(message);
+            };
             return false;
         };
 
         socket.onmessage = function (event) {
-            showMessage(event.data);
+            showMessage(parseMessageForPrint(event.data));
             return false;
         };
 

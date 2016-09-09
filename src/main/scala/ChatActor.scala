@@ -8,11 +8,11 @@ class ChatActor extends Actor {
 
     case UserJoined(name, userActor) =>
       people += name -> userActor
-      people.values.foreach(_ ! ChatMessage("System", s"New user:$name!"))
+      people.values.foreach(_ ! ChatMessage("SYSTEM", s"Пользователь $name вошел в чат!"))
 
     case UserLeft(name) =>
       people -= name
-      people.values.foreach(_ ! ChatMessage("System", s"User $name left!"))
+      people.values.foreach(_ ! ChatMessage("SYSTEM", s"Пользователь $name покинул чат!"))
 
     case MessageReceived(sender, message) =>
       people.values.foreach(_ ! ChatMessage(sender, message))

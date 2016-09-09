@@ -3,6 +3,8 @@ import akka.actor._
 import akka.http.scaladsl.model.ws.{Message, TextMessage}
 import akka.stream.{ActorMaterializer, OverflowStrategy}
 import akka.stream.scaladsl._
+import io.circe.generic.auto._
+import io.circe.syntax._
 
 object Chat {
 
@@ -17,7 +19,7 @@ object Chat {
         case TextMessage.Strict(txt) => txt
       }
       .via(chatFlow(user))
-      .map(msg => TextMessage.Strict(s"$user: $msg"))
+      .map(msg => TextMessage.Strict(msg.asJson.noSpaces))
   }
 
 
