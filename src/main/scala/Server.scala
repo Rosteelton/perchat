@@ -18,8 +18,7 @@ object Server extends App {
       get {
         getFromResourceDirectory("images")
       }
-    } ~
-      pathPrefix("js") {
+    } ~ pathPrefix("js") {
         get {
           getFromResourceDirectory("js")
         }
@@ -33,6 +32,17 @@ object Server extends App {
       }
     }
   }
+
+
+  val routeAuth: Route = get {
+    path("auth") {
+      pathSingleSlash {
+        getFromResource(auth.html)
+      }
+    }
+  }
+
+
 
   val config = ConfigFactory.load()
   Http().bindAndHandle(route, config.getString("http-server.interface"), config.getInt("http-server.port"))

@@ -16,14 +16,21 @@
     <!--&lt;!&ndash; Latest compiled and minified JavaScript &ndash;&gt;-->
     <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
 
+    <script type="text/javascript" src="//vk.com/js/api/openapi.js?129"></script>
+
+    <script type="text/javascript">
+        VK.init({apiId: 5622760});
+    </script>
 
 </head>
 <body>
 <div class="fixed-overlay__modal" id="loginWindow">
     <div class="modal">
         <div class="modal_container">
-          Имя: <input class="txtLoginClass" id="textFieldForName" type="text">
-            <input class="btnLoginClass" type="button" value="Log in!" id="loginButton">
+            <div id="vk_auth"></div>
+            <script type="text/javascript">
+                VK.Widgets.Auth("vk_auth", {width: "200px", authUrl: '/'});
+            </script>
         </div>
     </div>
 </div>
